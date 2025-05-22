@@ -115,7 +115,10 @@ Route::get('/user/checkout/{id}', [BookingController::class, 'checkout'])->name(
 Route::post('/booking/update-status/{id}', [BookingController::class, 'updateStatus'])->name('booking.updateStatus');
 
 
-
+Route::middleware(['auth'])->group(function () {
+    // Route booking
+    Route::post('/booking/update-status/{id}', [BookingController::class, 'updateStatus'])->name('booking.updateStatus');
+});
 
 
 Route::post('/booking/pay/{id}', [BookingController::class, 'pay'])->name('booking.pay');
